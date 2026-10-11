@@ -2,7 +2,7 @@
 
 haomeh 是獨立開發者經營的個人品牌。此專案提供繁中靜態官網，介紹 Wealthline 與 GoodGrain 拾穀；使用已選定的「奶油圓團＋深棕短捲角」標誌。
 
-發布目標：https://howmay.github.io/haomeh-website/ 。使用 GitHub Pages 與 HTTPS，聯絡管道為本 repository 的 Issues 及 support@haomeh.com。
+發布目標：https://haomeh.github.io/haomeh-website/ 。使用 GitHub Pages 與 HTTPS，聯絡管道為本 repository 的 Issues 及 support@haomeh.com。
 
 ## 本地執行
 
@@ -102,7 +102,7 @@ Pages Settings 來源為 `gh-pages`、`/`；HTTPS 已啟用。沒有 CNAME、自
 公開站響應式檢查：
 
 ```sh
-SITE_URL=https://howmay.github.io/haomeh-website/ npm run test:browser
+SITE_URL=https://haomeh.github.io/haomeh-website/ npm run test:browser
 ```
 
 公開網站另需驗證真正不存在的巢狀網址回傳 HTTP 404，並保留樣式、logo 與回首頁導覽。正式螢幕閱讀器、跨瀏覽器稽核及法律審閱尚未完成；不得將技術驗證當作認證或法律合規保證。營運後續事項見 [維護清單](docs/LAUNCH-BLOCKERS.md)。
