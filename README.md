@@ -2,7 +2,7 @@
 
 haomeh 是獨立開發者經營的個人品牌。此專案提供繁中靜態官網，介紹 Wealthline 與 GoodGrain 拾穀；使用已選定的「奶油圓團＋深棕短捲角」標誌。
 
-發布目標：https://haomeh.github.io/haomeh-website/ 。使用 GitHub Pages 與 HTTPS，聯絡管道為本 repository 的 Issues 及 support@haomeh.com。
+正式網域：https://haomeh.com/ 。使用 GitHub Pages 與 HTTPS，聯絡管道為本 repository 的 Issues 及 support@haomeh.com。
 
 ## 本地執行
 
@@ -93,16 +93,16 @@ Wealthline 原始碼公開，採 PolyForm Noncommercial 授權，不代表可以
 
 ## 部署與維護
 
-目前使用 GitHub Pages 的 `gh-pages` 分支根目錄發布。來源程式在 `main`，輸出以 `BASE_PATH=/haomeh-website/ npm run build` 產生；完成本地驗證後，將 `dist/` 內容提交至 `gh-pages`。該分支保留 `.nojekyll`，不包含來源、測試套件或私人設定。
+目前使用 GitHub Pages 的 `gh-pages` 分支根目錄發布。來源程式在 `main`，輸出以 `BASE_PATH=/ npm run build` 產生；完成本地驗證後，將 `dist/` 內容提交至 `gh-pages`。建置每次產生 `CNAME`（`haomeh.com`），該分支保留 `CNAME` 與 `.nojekyll`，不包含來源、測試套件或私人設定。
 
 現有 GitHub 憑證無 workflow scope，因此不新增 Actions workflow，也不擴充憑證權限。Pages 的分支發布仍會由 GitHub 產生部署 run。更新 main 不會自動更新公開網站；必須重新建置、驗證並發布 `gh-pages`。
 
-Pages Settings 來源為 `gh-pages`、`/`；HTTPS 已啟用。沒有 CNAME、自訂網域或 DNS 變更。
+Pages Settings 來源為 `gh-pages`、`/`，custom domain 為 `haomeh.com`。正式部署使用根路徑，不能使用 `/haomeh-website/`。DNS 由 Cloudflare 管理；新域名的 HTTPS 必須待 GitHub 憑證就緒後確認強制開啟。修改輸出時不可刪除 `CNAME`。
 
 公開站響應式檢查：
 
 ```sh
-SITE_URL=https://haomeh.github.io/haomeh-website/ npm run test:browser
+SITE_URL=https://haomeh.com/ npm run test:browser
 ```
 
 公開網站另需驗證真正不存在的巢狀網址回傳 HTTP 404，並保留樣式、logo 與回首頁導覽。正式螢幕閱讀器、跨瀏覽器稽核及法律審閱尚未完成；不得將技術驗證當作認證或法律合規保證。營運後續事項見 [維護清單](docs/LAUNCH-BLOCKERS.md)。

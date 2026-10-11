@@ -1,9 +1,9 @@
 # 發布範圍與後續維護
 
-使用者已授權發布至 GitHub 預設網址，並確認公開聯絡為本 repo Issues 與 support@haomeh.com。此授權取代初版草稿的部署限制。
+使用者已授權發布至 GitHub Pages 並綁定 haomeh.com，並確認公開聯絡為本 repo Issues 與 support@haomeh.com。此授權取代初版草稿的部署限制。
 
 - [x] 獨立開發者經營的個人品牌；不虛構公司、私人姓名或所在地。
-- [x] GitHub Pages gh-pages 分支發布、HTTPS、專案 base path；不改自訂域名、DNS 或組織名稱。
+- [x] GitHub Pages gh-pages 分支發布、根路徑及 haomeh.com CNAME；Cloudflare DNS 由協作任務處理，產品子域與郵件記錄不變。
 - [x] 隱私／安全敏感內容走電子郵件；公開 Issues 提醒勿貼私人資料。
 - [x] 隱私頁如實描述 GitHub Pages 與外連產品政策分離，無追蹤或資料收集表單。
 - [ ] 正式螢幕閱讀器與跨瀏覽器稽核。
