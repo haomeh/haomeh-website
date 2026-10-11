@@ -1,8 +1,10 @@
+import { getBasePath } from "./site-path.mjs";
 import { readFile, readdir, access } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 const root = new URL("../dist/", import.meta.url);
 const files = await readdir(root);
+const basePath = getBasePath();
 let links = 0;
 for (const file of files.filter((f) => f.endsWith(".html"))) {
   const html = await readFile(new URL(file, root), "utf8");
@@ -13,7 +15,9 @@ for (const file of files.filter((f) => f.endsWith(".html"))) {
   for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
     links++;
     if (href.startsWith("https:")) continue;
-    const [path, hash] = href.split("#");
+    const [urlPath, hash] = href.split("#");
+    if (urlPath) assert.ok(urlPath.startsWith(basePath), href);
+    const path = urlPath ? urlPath.slice(basePath.length) : "";
     if (path) await access(new URL(path, root));
     if (hash) {
       const target = path ? await readFile(new URL(path, root), "utf8") : html;
@@ -49,11 +53,11 @@ for (const route of [
 ]) {
   const html = await readFile(new URL(route + ".html", root), "utf8");
   assert.equal(
-    (html.match(/src="brand\/haomeh-selected.svg"/g) || []).length,
+    html.split(`src="${basePath}brand/haomeh-selected.svg"`).length - 1,
     2,
     route + " header and footer",
   );
-  assert.match(html, /href="brand\/favicon.svg"/);
+  assert.ok(html.includes(`href="${basePath}brand/favicon.svg"`));
 }
 console.log(
   "PASS: option 01 unchanged; shared header/footer and favicon match on all 7 website pages.",

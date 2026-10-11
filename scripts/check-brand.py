@@ -20,5 +20,6 @@ def lum(h):
 a,b=sorted([lum('#29392f'),lum('#f8f7f2')]);ratio=(b+.05)/(a+.05)
 assert ratio>=7
 report={'svgAssets':results,'noEmbeddedScriptsOrFonts':True,'brandForeground':'#29392f','brandBackground':'#f8f7f2','brandContrastRatio':round(ratio,2),'minimumContrast':7,'note':'Brand ink/background only; not a complete WCAG audit.'}
+(root/'artifacts').mkdir(parents=True, exist_ok=True)
 (root/'artifacts/brand-tests.json').write_text(json.dumps(report,indent=2))
 print(f'PASS: {len(results)} SVGs parsed, no external assets/scripts/text; brand contrast {ratio:.2f}:1.')

@@ -54,11 +54,11 @@ assert.equal(
 );
 await page.keyboard.press("Enter");
 assert.equal(await page.evaluate(() => location.hash), "#main");
-await page.locator('header a[href="about.html"]').click();
+await page.locator('header a[href="/about.html"]').click();
 assert.match(await page.title(), /關於/);
-await page.locator('header a[href="contact.html"]').click();
+await page.locator('header a[href="/contact.html"]').click();
 assert.match(await page.title(), /聯絡/);
-await page.locator('footer a[href="privacy.html"]').click();
+await page.locator('footer a[href="/privacy.html"]').click();
 assert.match(await page.title(), /隱私/);
 assert.deepEqual(errors, []);
 await writeFile(

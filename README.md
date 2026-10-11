@@ -2,7 +2,7 @@
 
 haomeh 是個人經營的獨立軟體品牌。此專案提供繁中靜態官網，介紹 Wealthline 與 GoodGrain 拾穀；使用已選定的「奶油圓團＋深棕短捲角」標誌。
 
-目前僅供審閱，尚未發布。所有頁面保留草稿標示與 `noindex`；`robots.txt` 禁止索引。這些標記不等於存取控制。正式經營者、聯絡資訊及託管政策仍須補齊，見 [發布前清單](docs/LAUNCH-BLOCKERS.md)。
+PR 目前為 ready for review；網站內容仍是僅供審閱、尚未發布的草稿。所有頁面保留草稿標示與 `noindex`；`robots.txt` 禁止索引。這些標記不等於存取控制。正式經營者、聯絡資訊及託管政策仍須補齊，見 [發布前清單](docs/LAUNCH-BLOCKERS.md)。
 
 ## 本地執行
 
@@ -13,7 +13,20 @@ npm run build
 npm run preview
 ```
 
-開啟 http://127.0.0.1:4173 。也可直接開啟 `dist/index.html`。使用相對連結，可供 GitHub Pages 子路徑或一般靜態託管使用。
+開啟 http://127.0.0.1:4173 。請透過 HTTP 預覽，不直接以 `file://` 開啟：頁面資源與導覽使用建置時指定的站點絕對路徑，避免主機在巢狀不存在網址返回 404 時錯指資源。
+
+### 根站與 Pages 子路徑
+
+`BASE_PATH` 預設 `/`，適用自訂網域根站及上述本地預覽。Pages 專案站建置與連結檢查使用：
+
+```sh
+BASE_PATH=/haomeh-website/ npm run build
+BASE_PATH=/haomeh-website/ npm test
+```
+
+尾斜線可省略，建置會補齊。請按實際掛載位置設定；輸出仍放在 `dist/`，不另產生子目錄。外連與 `#main` 這類本頁 anchor 保持原語意。測試其他 base 後，執行 `npm run build` 恢復預設根站輸出，再跑 `npm run preview`。
+
+Python 預覽伺服器只用於正常頁面預覽，不模擬託管商自訂 404；巢狀 404 請使用下方回歸測試。
 
 ## 驗證
 
@@ -36,6 +49,14 @@ npx playwright install chromium
 npm run test:browser
 ```
 
+獨立回歸測試不需要預先啟動 preview server，也不修改目前的 `dist/`：
+
+```sh
+npm run test:regression
+```
+
+回歸測試複製程式至全新暫存目錄，驗證 `build → test:brand` 不依賴既有 `artifacts/`。另啟動臨時 HTTP 伺服器，以 404 狀態在原請求網址送出自訂 404 頁，涵蓋根站、Pages 子路徑、不存在的巢狀網址及其尾斜線版本；檢查 CSS、favicon、圖片、導覽、本頁鍵盤跳轉與首頁按鈕。
+
 測試涵蓋 320、375、390、430、1280 px × 7 個頁面、水平溢位、圖片載入、鍵盤跳至主內容、導覽與瀏覽器錯誤。結果及五張首頁截圖輸出至忽略的 `artifacts/`。特殊測試環境可用 `PLAYWRIGHT_MODULE` 指定現有 Playwright 模組。
 
 ## 頁面
@@ -57,6 +78,8 @@ npm run test:browser
 - `src/brand/haomeh-selected.svg`：已選定標誌；`favicon.svg` 使用完全相同圖形與配色。
 - `src/brand/wordmark-a*.svg`：原創向量字標的深淺版本，不依賴外部字型。
 - `scripts/check.mjs`、`scripts/check-brand.py`、`scripts/browser-check.mjs`：靜態、SVG 與瀏覽器驗證。
+- `scripts/site-path.mjs`：建置用 URL base 驗證與內部 URL 前綴。
+- `scripts/regression-check.mjs`：乾淨建置與真實巢狀 404 回歸。
 
 歷次設計提案、回退包、Library 身分資料與參考圖保留在此 repository 之外。`dist/`、截圖、壓縮包、測試依賴及環境檔不提交。
 
