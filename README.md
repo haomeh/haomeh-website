@@ -1,8 +1,8 @@
-# haomeh 品牌網站草稿
+# haomeh 品牌網站
 
-haomeh 是個人經營的獨立軟體品牌。此專案提供繁中靜態官網，介紹 Wealthline 與 GoodGrain 拾穀；使用已選定的「奶油圓團＋深棕短捲角」標誌。
+haomeh 是獨立開發者經營的個人品牌。此專案提供繁中靜態官網，介紹 Wealthline 與 GoodGrain 拾穀；使用已選定的「奶油圓團＋深棕短捲角」標誌。
 
-PR 目前為 ready for review；網站內容仍是僅供審閱、尚未發布的草稿。所有頁面保留草稿標示與 `noindex`；`robots.txt` 禁止索引。這些標記不等於存取控制。正式經營者、聯絡資訊及託管政策仍須補齊，見 [發布前清單](docs/LAUNCH-BLOCKERS.md)。
+發布目標：https://howmay.github.io/haomeh-website/ 。使用 GitHub Pages 與 HTTPS，聯絡管道為本 repository 的 Issues 及 support@haomeh.com。
 
 ## 本地執行
 
@@ -65,10 +65,10 @@ npm run test:regression
 | --- | --- |
 | `index.html` | 品牌首頁、產品區 `#products` |
 | `about.html` | 個人品牌介紹與產品範圍 |
-| `contact.html` | 回饋連結、正式聯絡資訊待填說明 |
-| `privacy.html` | 品牌網站隱私草稿 |
-| `terms.html` | 展示網站使用條款草稿 |
-| `security.html` | 已知安全設計與待確認事項 |
+| `contact.html` | 公開 Issues、電子郵件與私人資料提醒 |
+| `privacy.html` | 品牌網站與 GitHub Pages 隱私說明 |
+| `terms.html` | 展示網站使用條款 |
+| `security.html` | 安全設計與非公開通報管道 |
 | `404.html` | 找不到頁面與首頁連結 |
 
 ## 維護位置
@@ -87,12 +87,22 @@ npm run test:regression
 
 Wealthline 原始碼公開，採 PolyForm Noncommercial 授權，不代表可以無限制商用。拾穀目前描述全家友善食光即期品庫存、分類與地圖導航；在地店家預約標為即將開放。產品圖與數字均標示為合成示意。
 
-網站無執行期 JavaScript、後端、登入、資料收集表單、analytics、第三方嵌入或非必要 Cookie。託管/CDN 仍可能處理 IP、時間、URL、瀏覽器及錯誤紀錄，須按實際供應商補充政策。各產品與外連服務適用各自政策。
+網站無執行期 JavaScript、後端、登入、資料收集表單、analytics、第三方嵌入或非必要 Cookie。GitHub Pages 會處理提供託管所需的技術資料；供應商的處理依 GitHub 隱私聲明。各產品與外連服務適用各自政策。
 
-沒有已登記公司、ISO 認證或法域合規保證的宣稱。公開 repository 也不會自動授予品牌資產或程式碼任何額外授權；發布前需決定授權方式。
+沒有已登記公司、ISO 認證或法域合規保證的宣稱。公開 repository 也不會自動授予品牌資產或程式碼任何額外授權；額外授權需另行確認。
 
-## 發布狀態與限制
+## 部署與維護
 
-公開 repository： https://github.com/howmay/haomeh-website 。未配置部署 workflow、CNAME 或網域。未完成正式螢幕閱讀器稽核、跨瀏覽器檢查、實際託管安全標頭或外部產品可用性重驗。標誌 16 px 主要以輪廓與配色辨識，細捲弱於大尺寸。
+目前使用 GitHub Pages 的 `gh-pages` 分支根目錄發布。來源程式在 `main`，輸出以 `BASE_PATH=/haomeh-website/ npm run build` 產生；完成本地驗證後，將 `dist/` 內容提交至 `gh-pages`。該分支保留 `.nojekyll`，不包含來源、測試套件或私人設定。
 
-未確認發布範圍及完成 [發布前清單](docs/LAUNCH-BLOCKERS.md) 前，不應移除草稿標示或部署。若日後使用靜態託管，建置命令為 `npm run build`，輸出目錄為 `dist`；此說明本身不執行部署。
+現有 GitHub 憑證無 workflow scope，因此不新增 Actions workflow，也不擴充憑證權限。Pages 的分支發布仍會由 GitHub 產生部署 run。更新 main 不會自動更新公開網站；必須重新建置、驗證並發布 `gh-pages`。
+
+Pages Settings 來源為 `gh-pages`、`/`；HTTPS 已啟用。沒有 CNAME、自訂網域或 DNS 變更。
+
+公開站響應式檢查：
+
+```sh
+SITE_URL=https://howmay.github.io/haomeh-website/ npm run test:browser
+```
+
+公開網站另需驗證真正不存在的巢狀網址回傳 HTTP 404，並保留樣式、logo 與回首頁導覽。正式螢幕閱讀器、跨瀏覽器稽核及法律審閱尚未完成；不得將技術驗證當作認證或法律合規保證。營運後續事項見 [維護清單](docs/LAUNCH-BLOCKERS.md)。

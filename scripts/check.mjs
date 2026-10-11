@@ -10,11 +10,11 @@ for (const file of files.filter((f) => f.endsWith(".html"))) {
   const html = await readFile(new URL(file, root), "utf8");
   assert.match(html, /<html lang="zh-Hant">/);
   assert.equal((html.match(/<h1[ >]/g) || []).length, 1, file);
-  assert.match(html, /noindex,nofollow/);
+  assert.ok(!/noindex|尚未正式發布|尚未生效|上線前必須完成/.test(html), file);
   assert.ok(!/<script|<iframe|<form|https:\/\/fonts/.test(html), file);
   for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
     links++;
-    if (href.startsWith("https:")) continue;
+    if (href.startsWith("https:") || href === "mailto:support@haomeh.com") continue;
     const [urlPath, hash] = href.split("#");
     if (urlPath) assert.ok(urlPath.startsWith(basePath), href);
     const path = urlPath ? urlPath.slice(basePath.length) : "";

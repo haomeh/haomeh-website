@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 const { chromium } = await import(
   process.env.PLAYWRIGHT_MODULE || "playwright"
 );
+const baseUrl = process.env.SITE_URL || "http://127.0.0.1:4173/";
+const basePath = new URL(baseUrl).pathname;
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
 const errors = [];
@@ -20,7 +22,7 @@ for (const width of [320, 375, 390, 430, 1280]) {
     "security",
     "404",
   ]) {
-    await page.goto(`http://127.0.0.1:4173/${route}.html`);
+    await page.goto(`${baseUrl}${route}.html`);
     assert.equal(await page.locator("h1").count(), 1);
     assert.ok(
       await page
@@ -40,13 +42,13 @@ for (const width of [320, 375, 390, 430, 1280]) {
     );
     results.push({ width, route, overflow: false });
   }
-  await page.goto("http://127.0.0.1:4173/index.html");
+  await page.goto(`${baseUrl}index.html`);
   await page.screenshot({
     path: `artifacts/home-${width}.png`,
     fullPage: true,
   });
 }
-await page.goto("http://127.0.0.1:4173/index.html");
+await page.goto(`${baseUrl}index.html`);
 await page.keyboard.press("Tab");
 assert.equal(
   await page.evaluate(() => document.activeElement.className),
@@ -54,11 +56,11 @@ assert.equal(
 );
 await page.keyboard.press("Enter");
 assert.equal(await page.evaluate(() => location.hash), "#main");
-await page.locator('header a[href="/about.html"]').click();
+await page.locator(`header a[href="${basePath}about.html"]`).click();
 assert.match(await page.title(), /關於/);
-await page.locator('header a[href="/contact.html"]').click();
+await page.locator(`header a[href="${basePath}contact.html"]`).click();
 assert.match(await page.title(), /聯絡/);
-await page.locator('footer a[href="/privacy.html"]').click();
+await page.locator(`footer a[href="${basePath}privacy.html"]`).click();
 assert.match(await page.title(), /隱私/);
 assert.deepEqual(errors, []);
 await writeFile(

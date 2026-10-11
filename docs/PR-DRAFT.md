@@ -1,3 +1,5 @@
+> 歷史文件：以下記錄初版 PR #1 的審閱範圍。PR 已合併；後續發布授權與目前狀態以 README、維護清單及 Pages deployment 為準。
+
 # Add haomeh brand website draft
 
 建立 haomeh 個人軟體品牌的獨立繁中官網，呈現 Wealthline 與 GoodGrain 拾穀的現有功能。首頁、共用導覽、頁尾與 favicon 使用已選定的奶油羊毛／深棕羊角標誌；產品介面明確標為示意。

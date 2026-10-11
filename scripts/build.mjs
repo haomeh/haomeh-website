@@ -9,11 +9,11 @@ const css = await readFile(
   "utf8",
 );
 const brand = `<span class="brand-lockup"><img class="brand-sheep" src="brand/haomeh-selected.svg" width="36" height="36" alt=""><img src="brand/wordmark-a.svg" width="150" height="37" alt="haomeh"><span class="brand-zh">好咩</span></span>`;
-const nav = `<a class="skip" href="#main">跳至主要內容</a><div class="draft">設計審閱版 · 尚未正式發布 <a href="contact.html">查看上線待確認事項 ↗</a></div><header class="wrap"><a class="wordmark" href="index.html" aria-label="haomeh 好咩 首頁">${brand}</a><nav aria-label="主要導覽"><a href="index.html#products">產品</a><a href="about.html">關於</a><a href="contact.html">聯絡 <span aria-hidden="true">↗</span></a></nav></header>`;
-const foot = `<footer class="wrap"><div class="footer-top"><a class="wordmark" href="index.html" aria-label="haomeh 好咩 首頁">${brand}</a><p>把日子裡的小事，做得更好。</p><a href="contact.html">與我們聯絡 ↗</a></div><div class="footer-bottom"><span>© 2026 haomeh · 品牌網站草稿</span><nav aria-label="頁尾導覽"><a href="privacy.html">隱私</a><a href="terms.html">使用條款</a><a href="security.html">安全說明</a></nav></div></footer>`;
+const nav = `<a class="skip" href="#main">跳至主要內容</a><header class="wrap"><a class="wordmark" href="index.html" aria-label="haomeh 好咩 首頁">${brand}</a><nav aria-label="主要導覽"><a href="index.html#products">產品</a><a href="about.html">關於</a><a href="contact.html">聯絡 <span aria-hidden="true">↗</span></a></nav></header>`;
+const foot = `<footer class="wrap"><div class="footer-top"><a class="wordmark" href="index.html" aria-label="haomeh 好咩 首頁">${brand}</a><p>把日子裡的小事，做得更好。</p><a href="contact.html">與我們聯絡 ↗</a></div><div class="footer-bottom"><span>© 2026 haomeh</span><nav aria-label="頁尾導覽"><a href="privacy.html">隱私</a><a href="terms.html">使用條款</a><a href="security.html">安全說明</a></nav></div></footer>`;
 const shell = (title, body) =>
   prefixSiteUrls(
-    `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="description" content="haomeh 品牌網站審閱草稿。認識 Wealthline 與 GoodGrain 拾穀，讓軟體貼近日常。"><title>${title} — haomeh</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/svg+xml" href="brand/favicon.svg"></head><body>${nav}<main id="main">${body}</main>${foot}</body></html>`,
+    `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="haomeh 獨立軟體品牌。認識 Wealthline 與 GoodGrain 拾穀，讓軟體貼近日常。"><title>${title} — haomeh</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/svg+xml" href="brand/favicon.svg"></head><body>${nav}<main id="main">${body}</main>${foot}</body></html>`,
     basePath,
   );
 const home = `<section class="hero wrap"><div class="eyebrow"><span class="square"></span> INDEPENDENT SOFTWARE, EVERYDAY LIFE.</div><h1>把日常，<br>做得<span class="serif">更好一點。</span></h1><div class="hero-bottom"><p>從看清自己的財務，到發現附近的好食物。<br>我們做貼近生活的軟體，讓重要的事更簡單。</p><a class="text-link" href="#products">認識我們的產品 <span>↓</span></a></div><div class="hero-index" aria-hidden="true">HAOMEH / 好咩<br>從日常的小事開始。</div></section>
@@ -25,31 +25,31 @@ const pages = {
     "關於我們",
     "ABOUT HAOMEH",
     "從日常出發，<br>把軟體做好。",
-    `<p class="lead">haomeh 是個人經營的獨立軟體品牌，關注那些每天都會遇到，卻還能更簡單一點的事。</p><h2>我們正在做的產品</h2><p>Wealthline 協助整理個人資產、負債與淨資產歷史，支援銀行、股票、基金、加密資產與多幣別；資料可保留在本機或使用者自己的 Google Drive。</p><p>GoodGrain 拾穀提供全家友善食光的即期品門市庫存、分類與地圖導航。在地店家預約仍屬即將開放功能。</p><h2>清楚，是基本要求</h2><p>我們不以未上線的功能或尚未取得的認證宣傳產品。Wealthline 原始碼公開，採 PolyForm Noncommercial 授權；使用與商業用途限制請查看其儲存庫授權文件。</p><a href="index.html#products" class="text-link">回到產品介紹 ↗</a>`,
+    `<p class="lead">haomeh 是獨立開發者經營的個人品牌，關注那些每天都會遇到，卻還能更簡單一點的事。</p><h2>我們正在做的產品</h2><p>Wealthline 協助整理個人資產、負債與淨資產歷史，支援銀行、股票、基金、加密資產與多幣別；資料可保留在本機或使用者自己的 Google Drive。</p><p>GoodGrain 拾穀提供全家友善食光的即期品門市庫存、分類與地圖導航。在地店家預約仍屬即將開放功能。</p><h2>清楚，是基本要求</h2><p>我們不以未上線的功能或尚未取得的認證宣傳產品。Wealthline 原始碼公開，採 PolyForm Noncommercial 授權；使用與商業用途限制請查看其儲存庫授權文件。</p><a href="index.html#products" class="text-link">回到產品介紹 ↗</a>`,
   ],
   "contact.html": [
     "聯絡",
     "CONTACT",
     "把話說清楚，<br>從聯絡開始。",
-    `<div class="blocker"><strong>上線前必須完成</strong><p>正式聯絡信箱、服務提供者的法律名稱與所在地尚待確認。本頁目前不接受訊息，也不收集表單資料。</p></div><h2>產品回饋</h2><p>Wealthline 的程式問題可透過公開的 GitHub Issues 提出。請勿張貼帳戶、財務紀錄或其他個人敏感資訊。</p><a class="button" href="https://github.com/howmay/Wealthline/issues">Wealthline Issues ↗</a><h2>合作、隱私與安全聯絡</h2><p>待正式聯絡管道確認後公布。此草稿不提供臨時或私人電子郵件地址。</p><h2>發布檢核</h2><ul><li>確認品牌與法律實體、所在地及適用法域。</li><li>確認正式客服、隱私與安全通報管道。</li><li>確認託管服務、伺服器紀錄用途與保存期間。</li><li>確認 GitHub repo、部署平台、網域既有設定與發布範圍。</li><li>釐清是否有 ISO 認證、證書範圍與有效性；確認前不作認證宣稱。</li><li>完成政策與條款審閱後移除草稿標示及 noindex。</li></ul>`,
+    `<p class="lead">haomeh 是獨立開發者經營的個人品牌。網站回饋、產品建議與合作洽詢，歡迎透過以下管道聯絡。</p><h2>公開回饋</h2><p>一般網站問題與建議可在本網站的 GitHub Issues 留言。Issues 內容公開，請勿張貼姓名、電話、帳戶、財務紀錄或其他私人資料。</p><a class="button" href="https://github.com/howmay/haomeh-website/issues">在 GitHub 留下 Issue ↗</a><h2>電子郵件</h2><p>合作洽詢、隱私請求與安全問題，請寄至 <a href="mailto:support@haomeh.com">support@haomeh.com</a>。敏感內容請使用電子郵件，不要放在公開 Issue；也請勿寄送密碼、驗證碼或完整財務紀錄。</p><h2>關於你的訊息</h2><p>我們會使用你提供的聯絡方式與訊息內容，處理和回覆你的問題。本網站沒有聯絡表單；GitHub 的資料處理由其政策說明。更多資訊請見<a href="privacy.html">隱私說明</a>。</p>`,
   ],
   "privacy.html": [
     "隱私說明",
-    "PRIVACY / DRAFT",
+    "PRIVACY",
     "你的瀏覽，<br>需要清楚的說明。",
-    `<div class="blocker"><strong>隱私說明草稿 · 尚未生效</strong><p>適用主體、聯絡窗口、託管供應商及紀錄保存期間待確認。本頁不是任何法域合規認證。</p></div><h2>本品牌網站的範圍</h2><p>本網站提供品牌與產品介紹。此版本未加入分析追蹤、廣告、第三方嵌入、非必要 Cookie 或資料收集表單；字型使用裝置本機字型，不向外部字型服務傳送請求。</p><h2>網站存取紀錄</h2><p>瀏覽網站時，實際託管或網路服務商可能處理 IP 位址、請求時間、瀏覽器資訊與錯誤紀錄，以提供網站及維護安全。供應商、具體欄位、用途、保存期間及處理地點須在發布前核實並補充。</p><h2>前往其他產品</h2><p>Wealthline、GoodGrain、GitHub 與 Google Drive 是不同的服務情境。開啟外部連結後，其各自的政策與設定適用。本品牌網站的說明不代表所有產品的資料處理方式。</p><h2>聯絡與權利請求</h2><p>正式隱私聯絡窗口尚待確認，請參閱<a href="contact.html">聯絡頁的上線待確認事項</a>。發布前將補上可用管道、處理流程及適用法域所要求的資訊。</p><h2>版本</h2><p>審閱日期：2026 年 10 月 11 日。此版本尚未正式發布或生效。</p>`,
+    `<p class="lead">本說明適用於 haomeh 品牌網站。haomeh 是獨立開發者經營的個人品牌；隱私問題請寄至 <a href="mailto:support@haomeh.com">support@haomeh.com</a>。</p><h2>瀏覽本網站</h2><p>本網站提供品牌與產品介紹，未加入分析追蹤、廣告、第三方嵌入、非必要 Cookie 或資料收集表單。字型使用裝置本機字型，不向外部字型服務傳送請求。</p><h2>GitHub Pages 託管</h2><p>本網站由 GitHub Pages 提供 HTTPS 靜態託管。GitHub 會處理提供服務所需的技術資料，例如 IP 位址與網站請求資訊。相關用途、保存與處理地點依 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隱私聲明</a>；haomeh 不另外設定訪客追蹤，也不宣稱能控制 GitHub 的紀錄保存期限。</p><h2>聯絡與公開 Issues</h2><p>透過電子郵件聯絡時，我們會使用你提供的信箱與訊息內容處理和回覆問題。需要詢問資料處理、要求更正或刪除聯絡內容時，請使用上述信箱；我們會依實際情況處理，並說明無法由我們控制的範圍。</p><p>GitHub Issues 是公開討論區，內容可能被他人閱讀與複製。請勿提交個人或敏感資料；隱私與安全問題請使用電子郵件。GitHub 帳戶及平台資料另依 GitHub 的政策處理。</p><h2>其他產品與服務</h2><p>Wealthline、GoodGrain 與 Google Drive 有各自的資料處理情境。開啟外部連結後，請查看對應產品或供應商的政策。本說明不代替產品本身的隱私說明。</p><h2>更新</h2><p>更新日期：2026 年 10 月 11 日。網站資料處理方式有變更時，會更新本頁。</p>`,
   ],
   "terms.html": [
     "使用條款",
-    "TERMS / DRAFT",
+    "TERMS",
     "使用之前，<br>先把範圍說明白。",
-    `<div class="blocker"><strong>使用條款草稿 · 尚未生效</strong><p>服務提供者、法律實體、所在地、適用法律與爭議處理方式尚待確認，需完成法務審閱後發布。</p></div><h2>網站用途</h2><p>本品牌網站用於介紹 haomeh 及其產品。產品的實際功能、可用性與使用條件，以各產品當下提供的說明及條款為準。</p><h2>產品資訊與示意畫面</h2><p>標示為示意的介面、數字及品項僅為設計展示，不是財務紀錄、即時庫存或可購買要約。Wealthline 是個人財務整理工具，不應將本網站內容視為投資建議。拾穀庫存可能隨門市狀況變動。</p><h2>程式碼與內容授權</h2><p>Wealthline 原始碼公開並採 PolyForm Noncommercial 授權，不代表可無限制商用。詳細權利與限制請查看<a href="https://github.com/howmay/Wealthline">官方儲存庫授權文件</a>。本品牌網站並未另外授予產品商標、文字或程式碼的使用權。</p><h2>外部服務</h2><p>外連網站由各服務提供者運作。使用其服務前，請查看對應條款與隱私說明。</p><h2>待確認條款</h2><p>責任範圍、法定權利、適用法律、爭議處理、變更通知與正式聯絡管道，需依實際經營主體及服務地區審閱，不能直接以此草稿取代完整契約。</p>`,
+    `<p class="lead">haomeh 是獨立開發者經營的個人品牌。以下說明適用於本品牌介紹網站；聯絡信箱為 <a href="mailto:support@haomeh.com">support@haomeh.com</a>。</p><h2>網站用途</h2><p>本品牌網站用於介紹 haomeh 及其產品。產品的實際功能、可用性與使用條件，以各產品當下提供的說明及條款為準。</p><h2>產品資訊與示意畫面</h2><p>標示為示意的介面、數字及品項僅為設計展示，不是財務紀錄、即時庫存或可購買要約。Wealthline 是個人財務整理工具，不應將本網站內容視為投資建議。拾穀庫存可能隨門市狀況變動。</p><h2>程式碼與內容授權</h2><p>Wealthline 原始碼公開並採 PolyForm Noncommercial 授權，不代表可無限制商用。詳細權利與限制請查看<a href="https://github.com/howmay/Wealthline">官方儲存庫授權文件</a>。本品牌網站並未另外授予產品商標、文字或程式碼的使用權。</p><h2>外部服務</h2><p>外連網站由各服務提供者運作。使用其服務前，請查看對應條款與隱私說明。</p><h2>問題與更新</h2><p>若網站內容有錯誤或使用上的疑問，請透過<a href="contact.html">聯絡管道</a>提出。我們可能隨產品及網站變更更新本說明；本說明不排除使用者依法享有的權利。</p><p>更新日期：2026 年 10 月 11 日。</p>`,
   ],
   "security.html": [
     "安全說明",
     "SECURITY",
     "信任，<br>從如實說明開始。",
-    `<div class="blocker"><strong>發布前待核實</strong><p>正式安全通報窗口及託管環境尚未確認。目前不宣稱取得 ISO 27001 或其他安全認證。</p></div><h2>此網站的設計</h2><p>品牌網站採靜態頁面，不設登入、資料庫或資料收集表單；無前端分析追蹤與第三方嵌入。這些設計減少資料處理範圍，但不代表任何系統絕無風險。</p><h2>產品與資料</h2><p>Wealthline 的本機與使用者自身 Google Drive 儲存方式，應依產品設定及文件理解。品牌網站不代為保管你的資產紀錄，也不作產品安全保證。GoodGrain 的資料處理應查看其產品政策。</p><h2>問題通報</h2><p>正式非公開安全通報管道待確認。在管道公布前，請勿在公開 issue 張貼可利用的漏洞細節、憑證或個人資料。</p><h2>ISO 與其他聲明</h2><p>若後續取得認證，需確認受認證主體、標準版本、證書範圍及有效日期，才會在網站公布。使用某個供應商或開發工具不代表 haomeh 自身獲得其認證。</p>`,
+    `<p class="lead">本網站由 GitHub Pages 提供 HTTPS 靜態託管。安全問題請使用下方的非公開聯絡管道。</p><h2>此網站的設計</h2><p>品牌網站採靜態頁面，不設登入、資料庫或資料收集表單；無前端分析追蹤與第三方嵌入。這些設計減少資料處理範圍，但不代表任何系統絕無風險。</p><h2>產品與資料</h2><p>Wealthline 的本機與使用者自身 Google Drive 儲存方式，應依產品設定及文件理解。品牌網站不代為保管你的資產紀錄，也不作產品安全保證。GoodGrain 的資料處理應查看其產品政策。</p><h2>問題通報</h2><p>請寄至 <a href="mailto:support@haomeh.com">support@haomeh.com</a> 說明問題。請勿在公開 Issue 張貼可利用的漏洞細節、憑證或個人資料。</p><h2>ISO 與其他聲明</h2><p>若後續取得認證，需確認受認證主體、標準版本、證書範圍及有效日期，才會在網站公布。使用某個供應商或開發工具不代表 haomeh 自身獲得其認證。</p>`,
   ],
 };
 await writeFile(
@@ -72,7 +72,7 @@ await writeFile(
     '<section class="document wrap"><h1>這一頁，<br>暫時不在這裡。</h1><a class="button" href="index.html">回到首頁 ↗</a></section>',
   ),
 );
-await writeFile(new URL("robots.txt", out), "User-agent: *\nDisallow: /\n");
+await writeFile(new URL("robots.txt", out), "User-agent: *\nAllow: /\n");
 await writeFile(new URL(".nojekyll", out), "");
 
 await mkdir(new URL("brand/", out), { recursive: true });
