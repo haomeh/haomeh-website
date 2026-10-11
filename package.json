@@ -1,0 +1,20 @@
+{
+  "name": "haomeh-site-draft",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint": "node --check scripts/build.mjs && node --check scripts/check.mjs && node --check scripts/browser-check.mjs",
+    "test": "node scripts/check.mjs",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 -d dist",
+    "test:brand": "python3 scripts/check-brand.py",
+    "test:browser": "node scripts/browser-check.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "playwright": "1.59.1"
+  }
+}
