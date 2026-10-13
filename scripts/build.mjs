@@ -11,9 +11,9 @@ const css = await readFile(
 const brand = `<span class="brand-lockup"><img class="brand-sheep" src="brand/haomeh-selected.svg" width="36" height="36" alt=""><img src="brand/wordmark-a.svg" width="150" height="37" alt="haomeh"><span class="brand-zh">好咩</span></span>`;
 const nav = `<a class="skip" href="#main">跳至主要內容</a><header class="wrap"><a class="wordmark" href="index.html" aria-label="haomeh 好咩 首頁">${brand}</a><nav aria-label="主要導覽"><a href="index.html#products">產品</a><a href="about.html">關於</a><a href="contact.html">聯絡 <span aria-hidden="true">↗</span></a></nav></header>`;
 const foot = `<footer class="wrap"><div class="footer-top"><a class="wordmark" href="index.html" aria-label="haomeh 好咩 首頁">${brand}</a><p>把日子裡的小事，做得更好。</p><a href="contact.html">與我們聯絡 ↗</a></div><div class="footer-bottom"><span>© 2026 haomeh</span><nav aria-label="頁尾導覽"><a href="privacy.html">隱私</a><a href="terms.html">使用條款</a><a href="security.html">安全說明</a></nav></div></footer>`;
-const shell = (title, body) =>
+const shell = (title, body, pagePath = "") =>
   prefixSiteUrls(
-    `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="haomeh 獨立軟體品牌。認識 Wealthline 與 GoodGrain 拾穀，讓軟體貼近日常。"><title>${title} — haomeh</title><link rel="stylesheet" href="style.css"><link rel="icon" type="image/svg+xml" href="brand/favicon.svg"></head><body>${nav}<main id="main">${body}</main>${foot}</body></html>`,
+    `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="haomeh 獨立軟體品牌。認識 Wealthline 與 GoodGrain 拾穀，讓軟體貼近日常。"><title>${title} — haomeh</title><link rel="canonical" href="https://haomeh.com/${pagePath}"><link rel="stylesheet" href="style.css"><link rel="icon" type="image/svg+xml" href="brand/favicon.svg"></head><body>${nav}<main id="main">${body}</main>${foot}</body></html>`,
     basePath,
   );
 const home = `<section class="hero wrap"><div class="eyebrow"><span class="square"></span> INDEPENDENT SOFTWARE, EVERYDAY LIFE.</div><h1>把日常，<br>做得<span class="serif">更好一點。</span></h1><div class="hero-bottom"><p>從看清自己的財務，到發現附近的好食物。<br>我們做貼近生活的軟體，讓重要的事更簡單。</p><a class="text-link" href="#products">認識我們的產品 <span>↓</span></a></div><div class="hero-index" aria-hidden="true">HAOMEH / 好咩<br>從日常的小事開始。</div></section>
@@ -62,6 +62,7 @@ for (const [file, [title, label, heading, body]] of Object.entries(pages))
     shell(
       title,
       `<section class="document wrap"><div class="eyebrow">${label}</div><h1>${heading}</h1><div class="prose">${body}</div></section>`,
+      file,
     ),
   );
 await writeFile(new URL("style.css", out), css);
@@ -70,10 +71,12 @@ await writeFile(
   shell(
     "找不到頁面",
     '<section class="document wrap"><h1>這一頁，<br>暫時不在這裡。</h1><a class="button" href="index.html">回到首頁 ↗</a></section>',
+    '404.html',
   ),
 );
 await writeFile(new URL("robots.txt", out), "User-agent: *\nAllow: /\n");
 await writeFile(new URL(".nojekyll", out), "");
+await writeFile(new URL("CNAME", out), "haomeh.com\n");
 
 await mkdir(new URL("brand/", out), { recursive: true });
 for (const file of [

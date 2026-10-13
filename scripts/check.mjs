@@ -62,3 +62,10 @@ for (const route of [
 console.log(
   "PASS: option 01 unchanged; shared header/footer and favicon match on all 7 website pages.",
 );
+
+assert.equal((await readFile(new URL("CNAME", root), "utf8")).trim(), "haomeh.com");
+for (const file of files.filter((f) => f.endsWith(".html"))) {
+ const html = await readFile(new URL(file, root), "utf8");
+ assert.ok(html.includes(`rel="canonical" href="https://haomeh.com/${file === "index.html" ? "" : file}"`), file);
+}
+console.log("PASS: custom domain and canonical URLs persist in build output.");
